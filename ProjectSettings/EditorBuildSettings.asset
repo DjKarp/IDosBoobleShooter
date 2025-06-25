@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/LoadingScene.unity
     guid: 736cdc85c3ae3544ca7db3bd98fb3979
+  - enabled: 1
+    path: Assets/BubbleShooterKit/Scenes/HomeScreen.unity
+    guid: 57ba596530b8c4ae0a1bfd9fc7249613
+  - enabled: 1
+    path: Assets/BubbleShooterKit/Scenes/LevelScreen.unity
+    guid: 04585921b24a34acb847bfcb0e89f2f6
+  - enabled: 1
+    path: Assets/BubbleShooterKit/Scenes/GameScreen.unity
+    guid: 3fd9fc8b49cfee54488d4997862c94bf
   m_configObjects: {}
