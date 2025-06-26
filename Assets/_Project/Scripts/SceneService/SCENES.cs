@@ -1,4 +1,5 @@
 public static class SCENES
 {
     public static string LOADING_SCENE = "LoadingScene";
+    public static string LOADING_MAIN = "Main";
 }

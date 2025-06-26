@@ -15,11 +15,14 @@ public class GameLauncherButton : MonoBehaviour
         if (_button != null)
             _button.onClick.AddListener(OnClick);
 
-        _textMesh.text = "Play On " + _gameToLaunch.GameName.ToString();
-        _image.sprite = _gameToLaunch.Icon;
+        if (_textMesh != null)
+            _textMesh.text = "Play On " + _gameToLaunch.GameName.ToString();
+
+        if (_image != null)
+            _image.sprite = _gameToLaunch.Icon;
     }
 
-    void OnClick()
+    public void OnClick()
     {
         if (_gameToLaunch != null)
         {

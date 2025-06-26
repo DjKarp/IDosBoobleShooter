@@ -100,9 +100,23 @@ namespace BubbleShooterKit
 
         public void OnPurchaseButtonPressed()
         {
+            if (IGSUserData.UserInventory.VirtualCurrency[VIRTUAL_CURRENCY_ID.COIN] > cachedItem.NumCoins)
+            {
+                IGSUserData.UserInventory.VirtualCurrency[VIRTUAL_CURRENCY_ID.COIN] -= cachedItem.NumCoins;
+                UserDataService.UpdateCustomUserData(CustomUserDataKey.saved_gameplay_data.ToString(), IGSUserData.UserInventory.VirtualCurrency);
 
-            IGSUserData.UserInventory.VirtualCurrency[VIRTUAL_CURRENCY_ID.COIN] -= cachedItem.NumCoins;
+                BuyCoinsPopup.SetCurrentPurchasableItem(this);
+                BuyCoinsPopup.CoinsSystem.BuyCoins(cachedItem.NumCoins);
 
+                if (IGSUserData.UserInventory.VirtualCurrency[VIRTUAL_CURRENCY_ID.COIN] < 100000)
+                {
+                    IDosGames.PushNotifications.API.SendRepeatNotification("VirtualCurrency", "VirtualCurrency Lower 100K!", new System.TimeSpan(0, 0, 0), new System.TimeSpan(0, 0, 0), "Icon_Wallet", "Icon_Wallet", "Top up your balance");
+                }
+            }
+            else
+            {
+                IDosGames.PushNotifications.API.SendRepeatNotification("VirtualCurrency", "VirtualCurrency Low!", new System.TimeSpan(0, 0, 0), new System.TimeSpan(0, 0, 0), "Icon_Wallet", "Icon_Wallet", "Top up your balance");
+            }
 
             /*#if UNITY_IAP
             var storeController = FindFirstObjectByType<PurchaseManager>().Controller;
@@ -112,10 +126,10 @@ namespace BubbleShooterKit
                 BuyCoinsPopup.SetCurrentPurchasableItem(this);
                 BuyCoinsPopup.OpenLoadingPopup();
             }
-            #else*/
+            #else
             BuyCoinsPopup.SetCurrentPurchasableItem(this);
             BuyCoinsPopup.CoinsSystem.BuyCoins(cachedItem.NumCoins);
-            //#endif
+            #endif*/
         }
 
         public void PlayCoinParticles()
