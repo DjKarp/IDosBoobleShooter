@@ -49,9 +49,10 @@ namespace IDosGames
 
             var imagePair = imageData.images.FirstOrDefault(i => i.imageType == imageType);
             string url = null;
+            string serverImageUrl = null;
 
             // ѕровер€ем сначала данные с сервера, затем данные imageUrl  
-            if (IGSUserData.ImageData?.TryGetValue(imageType.ToString(), out var serverImageUrl) == true && !string.IsNullOrEmpty(serverImageUrl))
+            if (IGSUserData.ImageData?.TryGetValue(imageType.ToString(), out serverImageUrl) == true && !string.IsNullOrEmpty(serverImageUrl))
             {
                 url = serverImageUrl;
             }
